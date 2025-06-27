@@ -8,6 +8,7 @@ import android.widget.CheckBox
 import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import org.jetbrains.annotations.ApiStatus
 
 class LoginActivity : AppCompatActivity() {
     lateinit var manejadorArchivo: FileHandler
@@ -27,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
             insets
         }*/
         //Inicialización de variables
-        manejadorArchivo = SharedPreferencesManager(this)
+        manejadorArchivo = ExternalFileManager(this)
         editTextEmail = findViewById(R.id.editTextEmail)
         editTextPassword = findViewById(R.id.editTextPassword)
         buttonLogin = findViewById(R.id.buttonLogin)
