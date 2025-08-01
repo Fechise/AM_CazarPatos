@@ -4,6 +4,7 @@ import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -13,6 +14,7 @@ class RankingAdapter(private val dataSet: ArrayList<Player>) : RecyclerView.Adap
         val textViewPosicion: TextView = view.findViewById(R.id.textViewPosicion)
         val textViewPatosCazados: TextView = view.findViewById(R.id.textViewPatosCazados)
         val textViewUsuario: TextView = view.findViewById(R.id.textViewUsuario)
+        val imageViewMedal: ImageView = view.findViewById(R.id.imageViewMedal)
     }
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textViewPosicion: TextView
@@ -23,6 +25,7 @@ class RankingAdapter(private val dataSet: ArrayList<Player>) : RecyclerView.Adap
             textViewPatosCazados = view.findViewById(R.id.textViewPatosCazados)
             textViewUsuario = view.findViewById(R.id.textViewUsuario)
         }
+        val imageViewMedal: ImageView = view.findViewById(R.id.imageViewMedal)
     }
     override fun getItemViewType(position: Int): Int {
         if(position == 0){
@@ -47,11 +50,30 @@ class RankingAdapter(private val dataSet: ArrayList<Player>) : RecyclerView.Adap
             holder.textViewPatosCazados.setTextColor(holder.textViewPatosCazados.context.getColor( R.color.colorPrimaryDark))
             holder.textViewUsuario.paintFlags = holder.textViewUsuario.paintFlags or Paint.UNDERLINE_TEXT_FLAG
             holder.textViewUsuario.setTextColor(holder.textViewUsuario.context.getColor( R.color.colorPrimaryDark))
+            holder.imageViewMedal.visibility = View.GONE
         }
         else if (holder is ViewHolder) {
             holder.textViewPosicion.text = position.toString()
             holder.textViewPatosCazados.text = dataSet[position-1].huntedDucks.toString()
             holder.textViewUsuario.text = dataSet[position-1].username
+
+            when (position) {
+                1 -> {
+                    holder.imageViewMedal.setImageResource(R.drawable.gold)
+                    holder.imageViewMedal.visibility = View.VISIBLE
+                }
+                2 -> {
+                    holder.imageViewMedal.setImageResource(R.drawable.silver)
+                    holder.imageViewMedal.visibility = View.VISIBLE
+                }
+                3 -> {
+                    holder.imageViewMedal.setImageResource(R.drawable.bronze)
+                    holder.imageViewMedal.visibility = View.VISIBLE
+                }
+                else -> {
+                    holder.imageViewMedal.visibility = View.GONE
+                }
+            }
         }
     }
     override fun getItemCount() = dataSet.size + 1

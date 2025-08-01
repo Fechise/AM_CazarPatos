@@ -8,8 +8,11 @@
     <string name="text_start_game">Start game</string>
     <string name="text_new_user">Create new user</string>
     <string name="error_email_required">Email is required</string>
+    <string name="error_email_invalid">Invalid email format</string>
     <string name="error_password_required">Password is required</string>
-    <string name="error_password_min_length">The password must have at least 3 characters</string>
+    <string name="error_confirm_password_required">Confirm your password</string>
+    <string name="error_password_min_length">The password must have at least 6 characters</string>
+    <string name="error_passwords_do_not_match">Passwords do not match</string>
     <string name="dialog_title_game_end">End of the game</string>
     <string name="dialog_message_congratulations">Congratulations!!\nYou hunted %1$d ducks</string>
     <string name="button_restart">Restart</string>
@@ -20,4 +23,10 @@
     <string name="text_new_game">New Game</string>
     <string name="text_play_online">Play Online</string>
     <string name="text_close">Close</string>
+    <string name="hint_password_confirmation">Enter your password again</string>
+    <string name="text_register_user">Register user</string>
+    <string name="text_back_to_login">Back to Login</string>
+    <string name="text_register_successful">Register successful</string>
+    <string name="text_register_failed">Register failed</string>
+    <string name="error_firebase_authentication">Firebase authentication error</string>
 </resources>

@@ -71,6 +71,7 @@ class RankingActivity : AppCompatActivity() {
         val db = Firebase.firestore
         db.collection("ranking")
             .orderBy("huntedDucks", com.google.firebase.firestore.Query.Direction.DESCENDING)
+            .limit(5)
             .get()
             .addOnSuccessListener { result ->
                 Log.d(EXTRA_LOGIN, "Success getting documents")

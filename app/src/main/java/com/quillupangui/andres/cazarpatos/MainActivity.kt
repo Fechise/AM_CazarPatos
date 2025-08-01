@@ -251,6 +251,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.action_salir -> {
+                com.google.firebase.auth.FirebaseAuth.getInstance().signOut()
                 finish()
                 true
             }

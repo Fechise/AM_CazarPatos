@@ -62,7 +62,8 @@ class LoginActivity : AppCompatActivity() {
             AutenticarUsuario(email, clave)
         }
         buttonNewUser.setOnClickListener {
-
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
         }
         mediaPlayer = MediaPlayer.create(this, R.raw.title_screen)
         mediaPlayer.start()
@@ -90,7 +91,7 @@ class LoginActivity : AppCompatActivity() {
             editTextPassword.requestFocus()
             return false
         }
-        if (password.length < 3) {
+        if (password.length < 6) {
             editTextPassword.setError(getString(R.string.error_password_min_length))
             editTextPassword.requestFocus()
             return false
@@ -110,6 +111,16 @@ class LoginActivity : AppCompatActivity() {
         manejadorArchivo.SaveInformation(listadoAGrabar)
     }
 
+    override fun onStart() {
+        super.onStart()
+        auth = FirebaseAuth.getInstance()
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra(EXTRA_LOGIN, currentUser.email)
+            startActivity(intent)
+        }
+    }
 
     override fun onDestroy() {
         mediaPlayer.release()
@@ -125,7 +136,6 @@ class LoginActivity : AppCompatActivity() {
                     val intencion = Intent(this, MainActivity::class.java)
                     intencion.putExtra(EXTRA_LOGIN, auth.currentUser!!.email)
                     startActivity(intencion)
-                    //finish()
                 } else {
                     Log.w(EXTRA_LOGIN, "signInWithEmail:failure", task.exception)
                     Toast.makeText(baseContext, task.exception!!.message,
